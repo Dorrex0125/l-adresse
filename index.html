@@ -1,0 +1,688 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L'Adresse - Restaurant français authentique à Ivry-sur-Seine. Découvrez nos plats traditionnels et notre sélection de vins fins.">
+    <meta name="keywords" content="restaurant, français, Ivry-sur-Seine, cuisine traditionnelle">
+    <title>L'Adresse - Restaurant Français à Ivry-sur-Seine</title>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Restaurant",
+        "name": "L'Adresse",
+        "image": "https://via.placeholder.com/400x300?text=L%27Adresse",
+        "description": "Restaurant français authentique proposant une cuisine traditionnelle et généreuse dans une ambiance chaleureuse.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "53 Bd Paul Vaillant Couturier",
+            "addressLocality": "Ivry-sur-Seine",
+            "postalCode": "94200",
+            "addressCountry": "FR"
+        },
+        "telephone": "+33952674703",
+        "url": "https://restaurant-ladresse.fr",
+        "priceRange": "€€",
+        "cuisine": "Française",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "120"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B4513;
+            --secondary: #D4AF37;
+            --accent: #2C1810;
+            --light: #F5E6D3;
+            --white: #FFFFFF;
+            --text: #333333;
+            --border: #E8D7C3;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--white);
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--secondary);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            color: var(--secondary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--accent);
+            padding: 0.8rem 2.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* SECTION INFOS */
+        .info-section {
+            background-color: var(--light);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .info-section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-top: 3px solid var(--secondary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .info-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .info-card a:hover {
+            color: var(--primary);
+        }
+
+        /* MENU */
+        .menu-section {
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .menu-section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .menu-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-category {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .menu-category h3 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .menu-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dotted var(--border);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .menu-item-name {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item-desc {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item-price {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        /* ABOUT */
+        .about-section {
+            background-color: var(--light);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-right: 5px solid var(--secondary);
+        }
+
+        .about-section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            height: 300px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 200px;
+            }
+        }
+
+        /* CONTACT */
+        .contact-section {
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 4px;
+        }
+
+        .contact-section h2 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            font-size: 1rem;
+        }
+
+        .contact-item a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--white);
+        }
+
+        .contact-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .contact-button a {
+            background-color: var(--secondary);
+            color: var(--accent);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .contact-button a:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--accent);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--secondary);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        /* UTILITIES */
+        .separator {
+            text-align: center;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">L'Adresse</div>
+    <nav>
+        <a href="#menu">Menu</a>
+        <a href="#about">À propos</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>L'Adresse</h1>
+    <p>Une cuisine française authentique dans une ambiance chaleureuse et conviviale</p>
+    <a href="#menu" class="cta-button">Découvrir notre menu</a>
+</section>
+
+<!-- INFOS -->
+<section class="info-section">
+    <div class="container">
+        <h2>Bienvenue à L'Adresse</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📍 Adresse</h3>
+                <p>53 Bd Paul Vaillant Couturier<br>94200 Ivry-sur-Seine<br>France</p>
+            </div>
+            <div class="info-card">
+                <h3>📞 Téléphone</h3>
+                <p><a href="tel:+33952674703">09 52 67 47 03</a></p>
+            </div>
+            <div class="info-card">
+                <h3>🗺️ Direction</h3>
+                <p><a href="https://www.google.com/maps/search/L%27Adresse+53+Bd+Paul+Vaillant+Couturier+94200+Ivry-sur-Seine" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+    <div class="container">
+        <h2>Notre Menu</h2>
+        
+        <div class="menu-grid">
+            <!-- Entrées -->
+            <div class="menu-category">
+                <h3>Entrées</h3>
+                
+                <div class="menu-item">
+                    <div class="menu-item-name">Escargots de Bourgogne</div>
+                    <div class="menu-item-desc">6 pièces, beurre persillé traditionnel</div>
+                    <div class="menu-item-price">12,50 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Pâté de Foie Gras</div>
+                    <div class="menu-item-desc">Servi avec pain toasté</div>
+                    <div class="menu-item-price">14,00 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Soupe à l'Oignon Gratinée</div>
+                    <div class="menu-item-desc">Recette classique française</div>
+                    <div class="menu-item-price">8,50 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Salade Niçoise</div>
+                    <div class="menu-item-desc">Tomate, œuf, anchois, olives</div>
+                    <div class="menu-item-price">9,00 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Plateau de Fromages</div>
+                    <div class="menu-item-desc">Sélection française et internationale</div>
+                    <div class="menu-item-price">11,50 €</div>
+                </div>
+            </div>
+
+            <!-- Plats Principaux -->
+            <div class="menu-category">
+                <h3>Plats Principaux</h3>
+                
+                <div class="menu-item">
+                    <div class="menu-item-name">Coq au Vin</div>
+                    <div class="menu-item-desc">Sauce Bourguignonne, légumes braisés</div>
+                    <div class="menu-item-price">18,50 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Steak Frites</div>
+                    <div class="menu-item-desc">Pièce de 250g, sauce béarnaise</div>
+                    <div class="menu-item-price">22,00 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Sole Meunière</div>
+                    <div class="menu-item-desc">Beurre citronné, pommes vapeur</div>
+                    <div class="menu-item-price">20,50 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Canard aux Cerises</div>
+                    <div class="menu-item-desc">Magret rôti, sauce aigre-douce</div>
+                    <div class="menu-item-price">19,50 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Cassoulet Maison</div>
+                    <div class="menu-item-desc">Haricots, confit de canard, saucisse</div>
+                    <div class="menu-item-price">17,00 €</div>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-category">
+                <h3>Desserts</h3>
+                
+                <div class="menu-item">
+                    <div class="menu-item-name">Tarte Tatin</div>
+                    <div class="menu-item-desc">Pommes caramélisées, crème fraîche</div>
+                    <div class="menu-item-price">8,00 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Crème Brûlée</div>
+                    <div class="menu-item-desc">Vanille de Madagascar</div>
+                    <div class="menu-item-price">7,50 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Soufflé au Chocolat</div>
+                    <div class="menu-item-desc">Chocolat noir 70%, sauce vanille</div>
+                    <div class="menu-item-price">9,00 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Profiteroles</div>
+                    <div class="menu-item-desc">Glace vanille, sauce chocolat chaude</div>
+                    <div class="menu-item-price">7,50 €</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Assortiment de Macarons</div>
+                    <div class="menu-item-desc">Sélection de 4 saveurs</div>
+                    <div class="menu-item-price">6,50 €</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="separator">✦</div>
+
+<!-- À PROPOS -->
+<section class="about-section" id="about">
+    <div class="container">
+        <h2>À Propos de L'Adresse</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Depuis plus de 20 ans, L'Adresse est l'institution incontournable d'Ivry-sur-Seine pour les amateurs de cuisine française authentique. Notre restaurant allie tradition et convivialité dans une atmosphère chaleureuse et élégante.
+                </p>
+                <p>
+                    Nos chefs passionnés préparent chaque plat avec les meilleurs ingrédients, sélectionnés auprès de producteurs locaux et régionaux. Chaque assiette raconte une histoire, celle de notre amour pour la gastronomie française.
+                </p>
+                <p>
+                    Que vous veniez en famille, entre amis ou pour un moment en tête-à-tête, L'Adresse vous accueille dans un cadre raffiné où le service impeccable et la qualité des mets font de chaque repas une véritable célébration.
+                </p>
+            </div>
+            <div class="about-image">🍷</div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <h2>Nous Contacter</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h3>Adresse</h3>
+                <p>53 Bd Paul Vaillant Couturier<br>94200 Ivry-sur-Seine</p>
+            </div>
+            <div class="contact-item">
+                <h3>Téléphone</h3>
+                <p><a href="tel:+33952674703">09 52 67 47 03</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>Email</h3>
+                <p><a href="mailto:contact@restaurant-ladresse.fr">contact@restaurant-ladresse.fr</a></p>
+            </div>
+        </div>
+        <div class="contact-button">
+            <a href="https://www.google.com/maps/search/L%27Adresse+53+Bd+Paul+Vaillant+Couturier+94200+Ivry-sur-Seine" target="_blank" rel="noopener noreferrer">Réserver sur Google Maps</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2024 L'Adresse - Tous droits réservés</p>
+    <p>53 Bd Paul Vaillant Couturier, 94200 Ivry-sur-Seine | <a href="tel:+33952674703">09 52 67 47 03</a></p>
+</footer>
+
+</body>
+</html>
+```
