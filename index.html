@@ -48,6 +48,8 @@
             --white: #FFFFFF;
             --text: #333333;
             --border: #E8D7C3;
+            --warm-beige: #FAF6F0;
+            --dark-brown: #6B3410;
         }
 
         html {
@@ -61,30 +63,36 @@
             background-color: var(--white);
         }
 
-        /* HEADER */
+        /* ===== HEADER ===== */
         header {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-brown) 100%);
             color: var(--white);
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 3px solid var(--secondary);
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             letter-spacing: 2px;
             color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         nav {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
@@ -92,9 +100,11 @@
             color: var(--white);
             text-decoration: none;
             font-size: 0.95rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             border-bottom: 2px solid transparent;
             padding-bottom: 0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         nav a:hover {
@@ -105,193 +115,344 @@
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 1.2rem;
             }
 
             nav {
-                gap: 1rem;
+                gap: 1.5rem;
                 font-size: 0.85rem;
+            }
+
+            .logo {
+                font-size: 1.6rem;
             }
         }
 
-        /* HERO */
+        /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="p" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="40" fill="%23D4AF37" opacity="0.06"/></pattern></defs><rect width="1200" height="600" fill="%238B4513"/><rect width="1200" height="600" fill="url(%23p)"/></svg>');
+            background-size: cover;
+            background-position: center;
             color: var(--white);
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             text-align: center;
-            min-height: 400px;
+            min-height: 500px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             margin-bottom: 1rem;
             letter-spacing: 3px;
             color: var(--secondary);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+            font-weight: bold;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
             font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.7;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: var(--secondary);
+            background: linear-gradient(135deg, var(--secondary) 0%, #e6c450 100%);
             color: var(--accent);
-            padding: 0.8rem 2.5rem;
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 50px;
             font-weight: bold;
             transition: all 0.3s ease;
             font-size: 1rem;
             letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.3s ease;
         }
 
         .cta-button:hover {
-            background-color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         @media (max-width: 768px) {
             .hero {
-                padding: 4rem 1rem;
+                padding: 5rem 1.5rem;
+                min-height: 400px;
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 3rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
         }
 
-        /* CONTAINER */
+        /* ===== CONTAINER ===== */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* SECTION INFOS */
+        /* ===== INFO SECTION ===== */
         .info-section {
-            background-color: var(--light);
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-left: 5px solid var(--secondary);
+            background: linear-gradient(to bottom, var(--light) 0%, var(--warm-beige) 100%);
+            padding: 4rem 2rem;
+            margin: 0;
+            border-left: 6px solid var(--secondary);
+            position: relative;
+        }
+
+        .info-section::before {
+            content: '🍽️';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3.5rem;
+            opacity: 0.08;
         }
 
         .info-section h2 {
             color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             letter-spacing: 1px;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 0.8rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .info-section h2::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 0;
         }
 
         .info-card {
             background-color: var(--white);
-            padding: 1.5rem;
-            border-radius: 4px;
-            border-top: 3px solid var(--secondary);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--secondary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 8px 8px 0 0;
         }
 
         .info-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(139, 69, 19, 0.15);
         }
 
         .info-card h3 {
             color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .info-card p {
             font-size: 1rem;
             line-height: 1.8;
+            color: #555;
         }
 
         .info-card a {
             color: var(--secondary);
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 0.5rem;
         }
 
         .info-card a:hover {
             color: var(--primary);
+            transform: translateX(4px);
         }
 
-        /* MENU */
+        /* ===== MENU SECTION ===== */
         .menu-section {
-            padding: 3rem 2rem;
-            margin: 3rem 0;
+            padding: 5rem 2rem;
+            margin: 0;
+            background: var(--white);
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
         }
 
         .menu-section h2 {
             color: var(--primary);
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
             letter-spacing: 2px;
+            font-weight: bold;
             position: relative;
-            padding-bottom: 1rem;
         }
 
         .menu-section h2::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 3px;
-            background-color: var(--secondary);
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+
+        .menu-subtitle {
+            color: #888;
+            font-size: 1.15rem;
+            font-style: italic;
+            margin-top: 1.5rem;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2.5rem;
         }
 
         .menu-category {
-            background-color: var(--light);
-            padding: 2rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(135deg, var(--light) 0%, #f8ede4 100%);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .menu-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 8px 8px 0 0;
+        }
+
+        .menu-category:hover {
+            box-shadow: 0 12px 28px rgba(139, 69, 19, 0.15);
+            transform: translateY(-8px);
+            border-color: var(--secondary);
         }
 
         .menu-category h3 {
             color: var(--secondary);
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 0.75rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.8rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.8rem;
             letter-spacing: 1px;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .menu-category h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
         }
 
         .menu-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px dotted var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            padding-left: 0.5rem;
         }
 
         .menu-item:last-child {
@@ -302,120 +463,220 @@
 
         .menu-item-name {
             color: var(--primary);
-            font-weight: bold;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .menu-item-desc {
-            color: #666;
-            font-size: 0.9rem;
-            font-style: italic;
-            margin-bottom: 0.3rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
         }
 
         .menu-item-price {
             color: var(--secondary);
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            white-space: nowrap;
         }
 
-        /* ABOUT */
-        .about-section {
-            background-color: var(--light);
-            padding: 3rem 2rem;
+        .menu-item-desc {
+            color: #777;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 0.3rem;
+            line-height: 1.5;
+        }
+
+        /* ===== SEPARATOR ===== */
+        .separator {
+            text-align: center;
+            color: var(--secondary);
+            font-size: 2rem;
             margin: 3rem 0;
-            border-right: 5px solid var(--secondary);
+            opacity: 0.6;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background: linear-gradient(to bottom, var(--warm-beige) 0%, var(--light) 100%);
+            padding: 5rem 2rem;
+            margin: 0;
+            border-right: 6px solid var(--secondary);
+            position: relative;
+        }
+
+        .about-section::after {
+            content: '🍷';
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            font-size: 3.5rem;
+            opacity: 0.08;
         }
 
         .about-section h2 {
             color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             letter-spacing: 1px;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 0.8rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .about-section h2::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
         }
 
         .about-text p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.9;
             text-align: justify;
+            color: #555;
+        }
+
+        .about-text p:first-of-type {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary);
         }
 
         .about-image {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            height: 300px;
-            border-radius: 4px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-brown) 100%);
+            height: 350px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 3rem;
+            font-size: 4.5rem;
+            box-shadow: 0 12px 32px rgba(139, 69, 19, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .about-image > * {
+            position: relative;
+            z-index: 2;
         }
 
         @media (max-width: 768px) {
             .about-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
             .about-image {
-                height: 200px;
+                height: 280px;
             }
         }
 
-        /* CONTACT */
+        /* ===== CONTACT SECTION ===== */
         .contact-section {
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            background-color: var(--accent);
+            padding: 5rem 2rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, #1f120b 100%);
             color: var(--white);
-            border-radius: 4px;
+            border-top: 4px solid var(--secondary);
+            border-radius: 0;
         }
 
         .contact-section h2 {
             color: var(--secondary);
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             margin-bottom: 2rem;
             text-align: center;
             letter-spacing: 1px;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .contact-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0 2.5rem 0;
         }
 
         .contact-item {
             text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--secondary);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 2.5rem;
         }
 
         .contact-item h3 {
             color: var(--secondary);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .contact-item p {
-            font-size: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
         .contact-item a {
-            color: var(--secondary);
+            color: #e6d4b8;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .contact-item a:hover {
             color: var(--white);
+            transform: translateX(4px);
         }
 
         .contact-button {
@@ -425,39 +686,73 @@
         }
 
         .contact-button a {
-            background-color: var(--secondary);
+            background: linear-gradient(135deg, var(--secondary) 0%, #e6c450 100%);
             color: var(--accent);
-            padding: 1rem 2rem;
+            padding: 1.4rem 3rem;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 50px;
             font-weight: bold;
             font-size: 1rem;
             transition: all 0.3s ease;
             letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-button a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.3s ease;
         }
 
         .contact-button a:hover {
-            background-color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(212, 175, 55, 0.4);
         }
 
-        /* FOOTER */
+        .contact-button a:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-item {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             background-color: var(--accent);
             color: var(--white);
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
+            padding: 3rem 2rem;
+            font-size: 0.95rem;
             border-top: 3px solid var(--secondary);
         }
 
         footer p {
-            margin: 0.5rem 0;
+            margin: 0.8rem 0;
+        }
+
+        footer p:first-child {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 1rem;
         }
 
         footer a {
-            color: var(--secondary);
+            color: #e6d4b8;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -466,12 +761,47 @@
             color: var(--white);
         }
 
-        /* UTILITIES */
-        .separator {
-            text-align: center;
-            color: var(--secondary);
-            font-size: 1.5rem;
-            margin: 2rem 0;
+        @media (max-width: 768px) {
+            .menu-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .about-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .info-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .about-section h2,
+            .info-section h2,
+            .menu-section h2 {
+                font-size: 2rem;
+            }
+
+            .menu-category h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .contact-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-item h3 {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -489,9 +819,11 @@
 
 <!-- HERO -->
 <section class="hero">
-    <h1>L'Adresse</h1>
-    <p>Une cuisine française authentique dans une ambiance chaleureuse et conviviale</p>
-    <a href="#menu" class="cta-button">Découvrir notre menu</a>
+    <div class="hero-content">
+        <h1>L'Adresse</h1>
+        <p>Une cuisine française authentique dans une ambiance chaleureuse et conviviale</p>
+        <a href="#menu" class="cta-button">Découvrir notre menu</a>
+    </div>
 </section>
 
 <!-- INFOS -->
@@ -518,7 +850,10 @@
 <!-- MENU -->
 <section class="menu-section" id="menu">
     <div class="container">
-        <h2>Notre Menu</h2>
+        <div class="menu-header">
+            <h2>Notre Menu</h2>
+            <p class="menu-subtitle">Sélection de nos meilleurs plats français</p>
+        </div>
         
         <div class="menu-grid">
             <!-- Entrées -->
@@ -526,33 +861,43 @@
                 <h3>Entrées</h3>
                 
                 <div class="menu-item">
-                    <div class="menu-item-name">Escargots de Bourgogne</div>
+                    <div class="menu-item-name">
+                        <span>Escargots de Bourgogne</span>
+                        <span class="menu-item-price">12,50 €</span>
+                    </div>
                     <div class="menu-item-desc">6 pièces, beurre persillé traditionnel</div>
-                    <div class="menu-item-price">12,50 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Pâté de Foie Gras</div>
+                    <div class="menu-item-name">
+                        <span>Pâté de Foie Gras</span>
+                        <span class="menu-item-price">14,00 €</span>
+                    </div>
                     <div class="menu-item-desc">Servi avec pain toasté</div>
-                    <div class="menu-item-price">14,00 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Soupe à l'Oignon Gratinée</div>
+                    <div class="menu-item-name">
+                        <span>Soupe à l'Oignon Gratinée</span>
+                        <span class="menu-item-price">8,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Recette classique française</div>
-                    <div class="menu-item-price">8,50 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Salade Niçoise</div>
+                    <div class="menu-item-name">
+                        <span>Salade Niçoise</span>
+                        <span class="menu-item-price">9,00 €</span>
+                    </div>
                     <div class="menu-item-desc">Tomate, œuf, anchois, olives</div>
-                    <div class="menu-item-price">9,00 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Plateau de Fromages</div>
+                    <div class="menu-item-name">
+                        <span>Plateau de Fromages</span>
+                        <span class="menu-item-price">11,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Sélection française et internationale</div>
-                    <div class="menu-item-price">11,50 €</div>
                 </div>
             </div>
 
@@ -561,33 +906,43 @@
                 <h3>Plats Principaux</h3>
                 
                 <div class="menu-item">
-                    <div class="menu-item-name">Coq au Vin</div>
+                    <div class="menu-item-name">
+                        <span>Coq au Vin</span>
+                        <span class="menu-item-price">18,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Sauce Bourguignonne, légumes braisés</div>
-                    <div class="menu-item-price">18,50 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Steak Frites</div>
+                    <div class="menu-item-name">
+                        <span>Steak Frites</span>
+                        <span class="menu-item-price">22,00 €</span>
+                    </div>
                     <div class="menu-item-desc">Pièce de 250g, sauce béarnaise</div>
-                    <div class="menu-item-price">22,00 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Sole Meunière</div>
+                    <div class="menu-item-name">
+                        <span>Sole Meunière</span>
+                        <span class="menu-item-price">20,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Beurre citronné, pommes vapeur</div>
-                    <div class="menu-item-price">20,50 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Canard aux Cerises</div>
+                    <div class="menu-item-name">
+                        <span>Canard aux Cerises</span>
+                        <span class="menu-item-price">19,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Magret rôti, sauce aigre-douce</div>
-                    <div class="menu-item-price">19,50 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Cassoulet Maison</div>
+                    <div class="menu-item-name">
+                        <span>Cassoulet Maison</span>
+                        <span class="menu-item-price">17,00 €</span>
+                    </div>
                     <div class="menu-item-desc">Haricots, confit de canard, saucisse</div>
-                    <div class="menu-item-price">17,00 €</div>
                 </div>
             </div>
 
@@ -596,33 +951,43 @@
                 <h3>Desserts</h3>
                 
                 <div class="menu-item">
-                    <div class="menu-item-name">Tarte Tatin</div>
+                    <div class="menu-item-name">
+                        <span>Tarte Tatin</span>
+                        <span class="menu-item-price">8,00 €</span>
+                    </div>
                     <div class="menu-item-desc">Pommes caramélisées, crème fraîche</div>
-                    <div class="menu-item-price">8,00 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Crème Brûlée</div>
+                    <div class="menu-item-name">
+                        <span>Crème Brûlée</span>
+                        <span class="menu-item-price">7,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Vanille de Madagascar</div>
-                    <div class="menu-item-price">7,50 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Soufflé au Chocolat</div>
+                    <div class="menu-item-name">
+                        <span>Soufflé au Chocolat</span>
+                        <span class="menu-item-price">9,00 €</span>
+                    </div>
                     <div class="menu-item-desc">Chocolat noir 70%, sauce vanille</div>
-                    <div class="menu-item-price">9,00 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Profiteroles</div>
+                    <div class="menu-item-name">
+                        <span>Profiteroles</span>
+                        <span class="menu-item-price">7,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Glace vanille, sauce chocolat chaude</div>
-                    <div class="menu-item-price">7,50 €</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Assortiment de Macarons</div>
+                    <div class="menu-item-name">
+                        <span>Assortiment de Macarons</span>
+                        <span class="menu-item-price">6,50 €</span>
+                    </div>
                     <div class="menu-item-desc">Sélection de 4 saveurs</div>
-                    <div class="menu-item-price">6,50 €</div>
                 </div>
             </div>
         </div>
@@ -684,4 +1049,3 @@
 
 </body>
 </html>
-```
